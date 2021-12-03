@@ -1,8 +1,6 @@
 package manager.command;
 
-import java.io.IOException;
 
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -13,7 +11,7 @@ public class ManagerLoginProHandler implements CommandHandler {
 
 	@Override
 	public String process(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+			throws Throwable {
 		request.setCharacterEncoding("utf-8"); //한글 인코딩
 		
 		//넘어온 요청의 데이터를 얻어냄
