@@ -1,4 +1,4 @@
-package mngr.enc;
+package member.enc;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -24,7 +24,7 @@ public class PassCrypt {
 	private Connection getConnection() throws Exception {
 		Context initCtx = new InitialContext();
 		Context envCtx = (Context) initCtx.lookup("java:comp/env");
-		DataSource ds = (DataSource)envCtx.lookup("jdbc/jsptest");
+		DataSource ds = (DataSource)envCtx.lookup("jdbc/clothesshop");
 		return ds.getConnection();
 	}
 	
@@ -40,19 +40,19 @@ public class PassCrypt {
             conn = getConnection();
             
             pstmt = conn.prepareStatement(
-                	"select managerId, managerPasswd from manager");
+                	"select id, passwd from member");
             rs = pstmt.executeQuery();
             
             while(rs.next()){
-            	String id = rs.getString("managerId");
-            	String orgPass = rs.getString("managerPasswd");
+            	String id = rs.getString("id");
+            	String orgPass = rs.getString("passwd");
             	
             	String shaPass = sha.getSha256(orgPass.getBytes());
 
             	String bcPass = BCrypt.hashpw(shaPass, BCrypt.gensalt());
             	
             	pstmt = conn.prepareStatement(
-                    "update manager set managerPasswd=? where managerId=?");
+                    "update member set passwd=? where id=?");
                 pstmt.setString(1, bcPass);
                 pstmt.setString(2, id);
                 pstmt.executeUpdate();

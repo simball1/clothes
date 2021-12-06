@@ -79,17 +79,18 @@ public class ManagerDAO {
         
         try {
         	conn = getConnection();
-        	String sql = "insert int clothes(clothes_kind,clothes_title,clothes_price,";
-        	sql += "clothes_count,clothes_images, clothes_content) values(?,?,?,?,?,?) ";
+        	String sql = "insert into clothes(clothes_kind, clothes_title, clothes_price,";
+        	sql += "clothes_count, clothes_size, clothes_image, clothes_content, reg_date) values (?,?,?,?,?,?,?,?) ";
         	
         	pstmt = conn.prepareStatement(sql);
         	pstmt.setString(1, clothes.getClothes_kind());
         	pstmt.setString(2, clothes.getClothes_title());
         	pstmt.setInt(3, clothes.getClothes_price());
         	pstmt.setShort(4, clothes.getClothes_count());
-        	pstmt.setString(5, clothes.getClothes_image());
-        	pstmt.setString(6, clothes.getClothes_content());
-        	pstmt.setTimestamp(7, clothes.getReg_date());
+        	pstmt.setString(5, clothes.getClothes_size());
+        	pstmt.setString(6, clothes.getClothes_image());
+        	pstmt.setString(7, clothes.getClothes_content());
+        	pstmt.setTimestamp(8, clothes.getReg_date());
         	
         	pstmt.executeUpdate();
            
@@ -132,7 +133,7 @@ public class ManagerDAO {
 		return x;
     }
     
-    // 분류별 도는 전체등록된 옷의 정보를 얻어내는 메소드
+    // 분류별 또는 전체등록된 옷의 정보를 얻어내는 메소드
     public List<ManagerVO> getClothess(String clothes_kind) throws Exception {
     	Connection conn = null;
         PreparedStatement pstmt = null;
@@ -164,6 +165,7 @@ public class ManagerDAO {
         			clothes.setClothes_title(rs.getString("clothes_title"));
         			clothes.setClothes_price(rs.getInt("clothes_price"));
         			clothes.setClothes_count(rs.getShort("clothes_count"));
+        			clothes.setClothes_size(rs.getString("clothes_size"));
         			clothes.setClothes_image(rs.getString("clothes_image"));
         			clothes.setReg_date(rs.getTimestamp("reg_date"));
         			
@@ -209,6 +211,7 @@ public class ManagerDAO {
             	  clothes.setClothes_title(rs.getString("clothes_title"));
             	  clothes.setClothes_price(rs.getInt("clothes_price"));
             	  clothes.setClothes_count(rs.getShort("clothes_count"));
+            	  clothes.setClothes_size(rs.getString("clothes_size"));
             	  clothes.setClothes_image(rs.getString("clothes_image"));
             	  clothes.setClothes_content(rs.getString("clothes_content"));
          	  
@@ -224,5 +227,70 @@ public class ManagerDAO {
               	try { conn.close(); } catch(SQLException ex) {}
           } 
           return clothes;
+    }
+    
+    // 등록된 옷의 정보를 수정시 사용하는 메소드
+    public void updateClothes(ManagerVO clothes, int clothesId)
+    throws Exception {
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        String sql;
+        
+        try {
+            conn = getConnection();
+            
+            sql = "update clothes set clothes_kind=?,clothes_title=?,clothes_price=?";
+            sql += ",clothes_count=?";
+            sql += ",clothes_image=?,clothes_content=?";
+            sql += " where clothes_id=?";
+            
+            pstmt = conn.prepareStatement(sql);
+            
+            pstmt.setString(1, clothes.getClothes_kind());
+            pstmt.setString(2, clothes.getClothes_title());
+            pstmt.setInt(3, clothes.getClothes_price());
+            pstmt.setShort(4, clothes.getClothes_count());
+			pstmt.setString(5, clothes.getClothes_image());
+			pstmt.setString(6, clothes.getClothes_content());
+			pstmt.setInt(7, clothesId);
+            
+            pstmt.executeUpdate();
+            
+        } catch(Exception ex) {
+            ex.printStackTrace();
+        } finally {
+            if (pstmt != null) 
+            	try { pstmt.close(); } catch(SQLException ex) {}
+            if (conn != null) 
+            	try { conn.close(); } catch(SQLException ex) {}
+        }
+    }
+    
+ // clothesId에 해당하는 옷의 정보를 삭제시 사용하는 메소드
+    public void deleteClothes(int clothesId)
+    throws Exception {
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs= null;
+        
+        try {
+			conn = getConnection();
+
+            pstmt = conn.prepareStatement(
+            	"delete from clothes where clothes_id=?");
+            pstmt.setInt(1, clothesId);
+            
+            pstmt.executeUpdate();
+            
+        } catch(Exception ex) {
+            ex.printStackTrace();
+        } finally {
+            if (rs != null) 
+            	try { rs.close(); } catch(SQLException ex) {}
+            if (pstmt != null) 
+            	try { pstmt.close(); } catch(SQLException ex) {}
+            if (conn != null) 
+            	try { conn.close(); } catch(SQLException ex) {}
+        }
     }
 }

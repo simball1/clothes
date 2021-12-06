@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <meta name="viewport" content="width=device-width,initial-scale=1.0" />
-<script src="/clothesl/js/jquery-1.11.0.min.js"></script>
+<script src="/clothes/js/jquery-1.11.0.min.js"></script>
 <script src="/clothes/js/jquery.form.min.js"></script>
 <script src="/clothes/manager/productProcess/clothesregist.js"></script>
 
@@ -17,7 +17,7 @@
 	<button id="clothesList">목록으로</button>
 </div>
 <form id="upForm1" action="/clothes/manager/clothesRegisterPro.do"
-	method="post" enctype="multipart/form=data">
+	method="post" enctype="multipart/form-data">
 	<div id="clothesReigstForm" class="box">
 		<ul>
 			<li><label for="clothes_kind">분류선택</label> <select

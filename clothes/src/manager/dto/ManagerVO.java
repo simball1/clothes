@@ -8,7 +8,7 @@ public class ManagerVO {
 	private String clothes_title;	//옷 이름
 	private int clothes_price;		//옷 가격
 	private short clothes_count;	//옷 재고수량
-	private int clothes_size;		//옷 사이즈
+	private String clothes_size;		//옷 사이즈
 	private String clothes_image;	//옷 이미지명
 	private String clothes_content;	//옷 설명
 	private Timestamp reg_date;		//옷의 등록날짜
@@ -44,10 +44,10 @@ public class ManagerVO {
 		this.clothes_count = clothes_count;
 	}
 	
-	public int getClothes_size() {
+	public String getClothes_size() {
 		return clothes_size;
 	}
-	public void setClothes_size(int clothes_size) {
+	public void setClothes_size(String clothes_size) {
 		this.clothes_size = clothes_size;
 	}
 	public String getClothes_image() {

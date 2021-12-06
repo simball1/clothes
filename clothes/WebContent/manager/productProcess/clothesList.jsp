@@ -15,7 +15,7 @@
 	<button id="regist">책 등록</button>
 	<button id="bookMain">관리자 메인으로</button>
 </div>
-<div>
+<div id="clothess">
 	<c:if test="${count == 0}">
 		<ul>
 			<li>등록된 상품이 없습니다.
@@ -29,6 +29,7 @@
 		      <td align="center"  width="100">이름</td>
 		      <td align="center"  width="50">가격</td> 
 		      <td align="center"  width="50">수량</td> 
+		      <td align="center"  width="50">사이즈</td> 
 		      <td align="center"  width="50">옷 이미지</td>
 		      <td align="center"  width="70">등록일</td>
 		      <td align="center"  width="50">수정</td>
@@ -53,10 +54,11 @@
 		         		${clothes.getClothes_count()}
 		      		</c:if>
       			</td> 
-		      	<td width="50">${clothes.getClotes_image()}</td>
+      			<td width="50">${clothes.getClothes_size()}</td>
+		      	<td width="50">${clothes.getClothes_image()}</td>
 		      	<td width="50"><fmt:formatDate pattern="yyyy-MM-dd" value="${clothes.getReg_date()}"/></td>
 		      	<td width="50">
-		      	<button id="edit" name="${clothes.getClotes_id()},${clothes.getClothes_kind()}" onclick="edit(this)">수정</button></td>
+		      	<button id="edit" name="${clothes.getClothes_id()},${clothes.getClothes_kind()}" onclick="edit(this)">수정</button></td>
 			  	<td width="50">
 			  	<button id="delete" name="${clothes.getClothes_id()},${clothes.getClothes_kind()}" onclick="del(this)">삭제</button></td>
 			</tr>
