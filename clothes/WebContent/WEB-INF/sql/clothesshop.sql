@@ -27,7 +27,14 @@ create table member(
   tel varchar(20) not null
 );
 
-insert into member(id, passwd, name, reg_date, address, tel) 
-values('kingdora@dragon.com','1234','김개동', now(), '서울시', '010-1111-1111');
-
-
+create table qna(
+  qna_id int not null primary key auto_increment,
+  clothes_id int not null,
+  clothes_title varchar(100) not null,
+  qna_writer varchar(50) not null,
+  qna_content text not null,
+  group_id int not null,
+  qora tinyint not null,
+  reply tinyint default 0,
+  reg_date datetime not null
+);

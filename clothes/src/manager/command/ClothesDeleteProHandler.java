@@ -15,11 +15,11 @@ public class ClothesDeleteProHandler implements CommandHandler {
 		String clothes_kind = request.getParameter("clothes_kind");
 		
 		//DB연동 - book_id에 해당하는 상품을 삭제
-		ManagerDAO bookProcess = ManagerDAO.getInstance();
-		bookProcess.deleteClothes(clothes_id); 
+		ManagerDAO clothesProcess = ManagerDAO.getInstance();
+		clothesProcess.deleteClothes(clothes_id); 
 		
 		request.setAttribute("clothes_kind", clothes_kind);
-		return "/mngr/productProcess/clothesDeletePro.jsp";
+		return "/manager/productProcess/clothesDeletePro.jsp";
 	}
 	
 	

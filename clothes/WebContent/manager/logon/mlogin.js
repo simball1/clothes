@@ -19,9 +19,9 @@ $(document).ready(function(){
 	$("#logout").click(function(){
 		$.ajax({
 		   type: "POST",
-		   url: "/shoppingmall/mg/managerLogout.do",
+		   url: "/clothes/manager/managerLogout.do",
 		   success: function(data){
-			   window.location.href="/shoppingmall/mg/managerMain.do";
+			   window.location.href="/clothes/manager/managerMain.do";
 		   }
 		});
 	});

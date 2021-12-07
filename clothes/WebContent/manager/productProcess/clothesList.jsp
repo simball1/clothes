@@ -13,7 +13,7 @@
 <div id="listHeader">
 	<p>등록된 상품 목록(전체 상품:${count})
 	<button id="regist">책 등록</button>
-	<button id="bookMain">관리자 메인으로</button>
+	<button id="clothesMain">관리자 메인으로</button>
 </div>
 <div id="clothess">
 	<c:if test="${count == 0}">

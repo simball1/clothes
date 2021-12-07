@@ -16,7 +16,7 @@ public class ClothesUpdateFormHandler implements CommandHandler {
 		int clothes_id = Integer.parseInt(request.getParameter("clothes_id"));
 		String clothes_kind = request.getParameter("clothes_kind");
 		
-		//DB연동 clothes_id에 해당하는 상품을 얻어내서 clothes에 저장
+		//DB연동 clothes_id에 해당하는 상품을 얻어내서 clothes에 저장	
 		ManagerDAO clothesProcess = ManagerDAO.getInstance();
 		ManagerVO clothes = clothesProcess.getClothes(clothes_id);
 		

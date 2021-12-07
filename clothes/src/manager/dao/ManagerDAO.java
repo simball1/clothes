@@ -133,6 +133,62 @@ public class ManagerDAO {
 		return x;
     }
     
+ // 해당 분류의 옷의 수를 얻어내는 메소드
+ 	public int getClothesCount(String clothes_kind)
+ 	throws Exception {
+ 	    Connection conn = null;
+ 	    PreparedStatement pstmt = null;
+ 	    ResultSet rs = null;
+
+ 	    int x=0;
+ 	    int kind  = Integer.parseInt(clothes_kind);
+
+ 	    try {
+ 	        conn = getConnection();
+ 	        String query = "select count(*) from clothes where clothes_kind=" + kind;
+ 	        pstmt = conn.prepareStatement(query);
+ 	        rs = pstmt.executeQuery();
+
+ 	        if (rs.next()) 
+ 	            x= rs.getInt(1);
+ 	    } catch(Exception ex) {
+ 	        ex.printStackTrace();
+ 	    } finally {
+ 	        if (rs != null) 
+ 	           try { rs.close(); } catch(SQLException ex) {}
+ 	        if (pstmt != null) 
+ 	           try { pstmt.close(); } catch(SQLException ex) {}
+ 	        if (conn != null) 
+ 	           try { conn.close(); } catch(SQLException ex) {}
+ 	    }
+ 		return x;
+ 	}
+ 	
+ 	//옷의 이름을 얻어냄
+ 		public String getClothesTitle(int clothes_id){
+ 	        Connection conn = null;
+ 	        PreparedStatement pstmt = null;
+ 	        ResultSet rs = null;
+ 	        String x="";
+
+ 	        try {
+ 	            conn = getConnection();
+ 	            
+ 	            pstmt = conn.prepareStatement("select clothes_title from clothes where clothes_id = "+clothes_id);
+ 	            rs = pstmt.executeQuery();
+
+ 	            if (rs.next()) 
+ 	               x= rs.getString(1);
+ 	        } catch(Exception ex) {
+ 	            ex.printStackTrace();
+ 	        } finally {
+ 	            if (rs != null) try{ rs.close(); }catch(SQLException ex) {}
+ 	            if (pstmt != null) try{ pstmt.close(); }catch(SQLException ex) {}
+ 	            if (conn != null) try{ conn.close(); }catch(SQLException ex) {}
+ 	        }
+ 			return x;
+ 	    }
+    
     // 분류별 또는 전체등록된 옷의 정보를 얻어내는 메소드
     public List<ManagerVO> getClothess(String clothes_kind) throws Exception {
     	Connection conn = null;
@@ -186,6 +242,58 @@ public class ManagerDAO {
         }
 		return clothesList;
     }
+    
+ // 쇼핑몰 메인에 표시하기 위해서 사용하는 분류별 신규 옷 목록을 얻어내는 메소드
+ 	public ManagerVO[] getClothess(String clothes_kind,int count)
+     throws Exception {
+         Connection conn = null;
+         PreparedStatement pstmt = null;
+         ResultSet rs = null;
+         ManagerVO clothesList[]=null;
+         int i=0;
+         
+         try {
+             conn = getConnection();
+             
+             String sql = "select * from clothes where clothes_kind = ? ";
+             sql += "order by reg_date desc limit ?,?";
+             
+             pstmt = conn.prepareStatement(sql);
+             pstmt.setString(1, clothes_kind);
+             pstmt.setInt(2, 0);
+             pstmt.setInt(3, count);
+         	rs = pstmt.executeQuery();
+
+             if (rs.next()) {
+            	 clothesList = new ManagerVO[count];
+                 do{
+                	 ManagerVO clothes= new ManagerVO();
+                	 clothes.setClothes_id(rs.getInt("clothes_id"));
+                	 clothes.setClothes_kind(rs.getString("clothes_kind"));
+                	 clothes.setClothes_title(rs.getString("clothes_title"));
+                	 clothes.setClothes_price(rs.getInt("clothes_price"));
+                	 clothes.setClothes_count(rs.getShort("clothes_count"));
+                	 clothes.setClothes_size(rs.getString("clothes_size"));
+                	 clothes.setClothes_image(rs.getString("clothes_image"));
+                	 clothes.setReg_date(rs.getTimestamp("reg_date"));
+                	 
+                     clothesList[i]=clothes;
+                	
+                     i++;
+ 			    }while(rs.next());
+ 			}
+         } catch(Exception ex) {
+             ex.printStackTrace();
+         } finally {
+             if (rs != null) 
+             	try { rs.close(); } catch(SQLException ex) {}
+             if (pstmt != null) 
+             	try { pstmt.close(); } catch(SQLException ex) {}
+             if (conn != null) 
+             	try { conn.close(); } catch(SQLException ex) {}
+         }
+ 		return clothesList;
+     }
     
     //clothesId에 해당하는 옷의 정보를 얻어내는 메소드
     //등록된 옷을 수정하기 위해 수정폼으로 읽어들이기 위한 메소드

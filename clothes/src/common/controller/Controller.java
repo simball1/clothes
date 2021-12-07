@@ -113,9 +113,7 @@ public class Controller extends HttpServlet {
 	
 	//웹브라우저의 요청을 분석하고, 해당 로직의 처리를 할 모델 실행 및
 	//처리 결과를 뷰에 보냄
-	private void requestPro(
-		HttpServletRequest request, HttpServletResponse response) 
-		throws ServletException, IOException {
+	private void requestPro(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String view = null;
 		CommandHandler com=null;
 		try {
@@ -126,10 +124,12 @@ public class Controller extends HttpServlet {
 	        view = com.process(request, response);
 		}catch(Throwable e) {
 			e.printStackTrace();
+		} 
+		if(view != null) {
+			//request.setAttribute("cont",view);
+		    RequestDispatcher dispatcher = 
+		       request.getRequestDispatcher(view);
+			dispatcher.forward(request, response);
 		}
-		//request.setAttribute("cont",view);
-	    RequestDispatcher dispatcher = 
-	       request.getRequestDispatcher(view);
-		dispatcher.forward(request, response);
 	}
 }
