@@ -12,7 +12,7 @@ public class ModifyFormHandler implements CommandHandler {
 	@Override
 	public String process(HttpServletRequest request, HttpServletResponse response) throws Throwable {
 		// TODO Auto-generated method stub
-request.setCharacterEncoding("utf-8");
+		request.setCharacterEncoding("utf-8");
 		
 		String id = request.getParameter("id");
 		String passwd = request.getParameter("passwd");

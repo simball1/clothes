@@ -1,0 +1,19 @@
+@charset "UTF-8";
+
+#shoppingbasketlist {
+	position: relative;
+	width: 1080px;
+	margin: auto;
+}
+
+#shoppingbasketlist  h1 {
+	text-align: center;
+}
+
+#shoppingbasketlist h5 {
+	text-align: left;
+}
+
+#row_head {
+	float: right;
+}

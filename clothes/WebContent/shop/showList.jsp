@@ -3,6 +3,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<link rel="stylesheet" href="/clothes/css/style.css"/>
+<link rel="stylesheet" href="css/shop.css"/>
 
 <script src="/clothes/js/jquery-1.11.0.min.js"></script>
 
@@ -38,13 +40,17 @@
   <c:forEach var="clothes" items="${clothesList}">
     <table class="vhcenter">
       <tr height="30"> 
-        <td rowspan="4"  width="100">
+        <td rowspan="1"  width="100">
           <a href="/clothes/clothesContent.do?clothes_id=${clothes.getClothes_id()}&clothes_kind=${clothes.getClothes_kind()}">
              <img src="/clothes/clothesImage/${clothes.getClothes_image()}" class="listimage"></a></td>
+        </tr>
+        <tr>
         <td width="350" class="vhcenter">
           <a href="/clothes/clothesContent.do?clothes_id=${clothes.getClothes_id()}&clothes_kind=${clothes.getClothes_kind()}" class="b">
               ${clothes.getClothes_title()}</a></td>
-        <td rowspan="4" width="100">
+       </tr>
+       <tr>
+        <td rowspan="1" width="100">
           <c:if test="${clothes.getClothes_count()==0}">
             일시품절
           </c:if>
@@ -53,6 +59,7 @@
           </c:if>
        </td>      
        </tr>
+       
        <tr height="30">
         <td width="350"><c:set var="price" value="${clothes.getClothes_price()}"/>
         </td></tr> 

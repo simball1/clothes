@@ -6,8 +6,10 @@ $(document).ready(function(){
 				     buy_count:$("#buy_count").val(),
 				     clothes_image:$("#clothes_image").val(),
 				     clothes_title:$("#clothes_title").val(),
-				     clothes_price:$("#clothes_price").val(),
-				     buyer:buyer};		
+				     buy_price:$("#buy_price").val(),
+					 clothes_size:$("#clothes_size").val(),
+				     buyer:buyer
+					};		
 		$.ajax({
  		     type: "POST",
  		     url: "/clothes/insertCart.do",
@@ -24,6 +26,10 @@ $(document).ready(function(){
 	
 	$("#shopMain").click(function(){//[메인으로]버튼 클릭
 		window.location.href="/clothes/index.do";
+	});
+	
+	$("#cart").click(function(){//[장바구니]버튼 클릭
+		window.location.href="/clothes/cartList.do";
 	});
 	
 	$("#writeQna").click(function(){//[상품QnA쓰기]버튼 클릭

@@ -9,6 +9,9 @@ public class LogonVO {
 	private Timestamp reg_date; //가입날짜
 	private String address; //주소
 	private String tel; //전화번호
+	private String birth;
+	
+	
 	
 	public String getId() {
 		return id;
@@ -45,5 +48,13 @@ public class LogonVO {
 	}
 	public void setTel(String tel) {
 		this.tel = tel;
+	}
+	public String getBirth() {
+		return birth;
+	}
+	public void setBirth(String birth) {
+		this.birth = birth;
 	}  
+	
+	
 }

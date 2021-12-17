@@ -55,12 +55,14 @@ public class ClothesUpdateProHandler implements CommandHandler{
 		String clothes_title = imageUp.getParameter("clothes_title");
 		String clothes_price = imageUp.getParameter("clothes_price");
 		String clothes_count = imageUp.getParameter("clothes_count");
+		String clothes_size = imageUp.getParameter("clothes_size");
 		String clothes_content = imageUp.getParameter("clothes_content");
 		
 		clothes.setClothes_kind(clothes_kind);
 		clothes.setClothes_title(clothes_title);
 		clothes.setClothes_price(Integer.parseInt(clothes_price));
 		clothes.setClothes_count(Short.parseShort(clothes_count));
+		clothes.setClothes_size(clothes_size);
 		clothes.setClothes_image(filename);
 		clothes.setClothes_content(clothes_content);
 		clothes.setReg_date(new Timestamp(System.currentTimeMillis()));
@@ -72,7 +74,6 @@ public class ClothesUpdateProHandler implements CommandHandler{
 		
 		request.setAttribute("clothes_kind", clothes_kind);
 		return "/manager/productProcess/clothesUpdatePro.jsp";
-		
 		
 	}
 

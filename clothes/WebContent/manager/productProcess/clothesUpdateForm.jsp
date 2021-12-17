@@ -40,7 +40,10 @@
            size="10" maxlength="9" value="${clothes.clothes_price}">원
       <li><label for="clothes_count">수량</label>
           <input id="clothes_count" name="clothes_count" type="text" 
-           size="10" maxlength="5" value="${clothes.clothes_count}">권
+           size="10" maxlength="5" value="${clothes.clothes_count}">개
+      <li><label for="clothes_count">사이즈</label>
+          <input id="clothes_size" name="clothes_size" type="text" 
+           size="10" maxlength="5" value="${clothes.clothes_size}">
       <li><label for="clothes_image">옷 이미지</label>
           <input id="clothes_image" name="clothes_image" type="file">${clothes.clothes_image}  
       <li><label for="clothes_content">내용</label>

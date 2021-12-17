@@ -12,7 +12,22 @@ public class ModifyProHandler implements CommandHandler {
 	@Override
 	public String process(HttpServletRequest request, HttpServletResponse response) throws Throwable {
 		// TODO Auto-generated method stub
-request.setCharacterEncoding("utf-8");
+		request.setCharacterEncoding("utf-8");
+		
+		//생년월일 처리
+		String year = request.getParameter("year");
+		String month = request.getParameter("month");
+		String day= request.getParameter("day");
+		
+		if(month.length() == 1) {
+			month = "0" + month;
+		}
+		
+		if(day.length() == 1) {
+			day = "0" + day;
+		}
+		
+		String birth = year + month + day;
 		
 		//수정할 회원 정보
 		LogonVO member = new LogonVO();
@@ -21,6 +36,7 @@ request.setCharacterEncoding("utf-8");
         member.setName(request.getParameter("name"));
 		member.setAddress(request.getParameter("address"));
 		member.setTel(request.getParameter("tel"));
+		member.setBirth(birth);
 		
 		//수정할 회원 정보를 가지고 수정 처리 후 성공여부 반환
 		LogonDAO manager = LogonDAO.getInstance();

@@ -5,7 +5,10 @@ $(document).ready(function(){
 				  passwd:$("#passwd").val(),
 			      name:$("#name").val(),
 			      address:$("#address").val(),
-			      tel:$("#tel").val()};
+			      tel:$("#tel").val(),
+				  year:$("#year").val(),
+				  month:$("#month").val(),
+			      day:$("#day").val()};
 		
 		$.ajax({
 			type: "post",
@@ -32,4 +35,14 @@ $(document).ready(function(){
 		window.location.href="/clothes/modify.do";
 	});
 	
+	//생년월일 
+	for (var i = 2021; i > 1920; i--) {
+		 $('#year').append('<option value="' + i + '">' + i + '</option>'); 
+	} 
+	for (var i = 1; i < 13; i++) {
+		 $('#month').append('<option value="' + i + '">' + i + '</option>'); 
+	} 
+	for (var i = 1; i < 32; i++) {
+		 $('#day').append('<option value="' + i + '">' + i + '</option>'); 
+	} 
  });

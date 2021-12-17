@@ -48,13 +48,14 @@ public class LogonDAO {
         	String bcPass = BCrypt.hashpw(shaPass, BCrypt.gensalt());
         	
             pstmt = conn.prepareStatement(
-            	"insert into member values (?,?,?,?,?,?)");
+            	"insert into member values (?,?,?,?,?,?,?)");
             pstmt.setString(1, member.getId());
             pstmt.setString(2, bcPass);
             pstmt.setString(3, member.getName());
             pstmt.setTimestamp(4, member.getReg_date());
             pstmt.setString(5, member.getAddress());
-            pstmt.setString(6, member.getTel());		
+            pstmt.setString(6, member.getTel());
+            pstmt.setString(7, member.getBirth());
             pstmt.executeUpdate();
         } catch(Exception ex) {
             ex.printStackTrace();
@@ -153,6 +154,7 @@ public class LogonDAO {
 	                member.setReg_date(rs.getTimestamp("reg_date"));
 	                member.setAddress(rs.getString("address"));
 	                member.setTel(rs.getString("tel"));
+	                member.setBirth(rs.getString("birth"));
 	       }
 	    } catch(Exception ex) {
 	        ex.printStackTrace();
@@ -193,6 +195,7 @@ public class LogonDAO {
                   member.setReg_date(rs.getTimestamp("reg_date"));
                   member.setAddress(rs.getString("address"));
                   member.setTel(rs.getString("tel"));
+                  member.setBirth(rs.getString("birth"));
 				}
 			}
         } catch(Exception ex) {
@@ -220,6 +223,7 @@ public class LogonDAO {
             String orgPass = member.getPasswd();
             String shaPass = sha.getSha256(orgPass.getBytes());
             
+            
             pstmt = conn.prepareStatement(
                 	"select passwd from member where id = ?");
             pstmt.setString(1, member.getId());
@@ -229,12 +233,14 @@ public class LogonDAO {
 				String dbpasswd= rs.getString("passwd"); 
 				if(BCrypt.checkpw(shaPass,dbpasswd)){
                     pstmt = conn.prepareStatement(
-                     "update member set name=?,address=?,tel=? "+
+                     "update member set name=?,address=?,tel=?,birth=?"+
                      "where id=?");
+                    
                     pstmt.setString(1, member.getName());
                     pstmt.setString(2, member.getAddress());
                     pstmt.setString(3, member.getTel());
                     pstmt.setString(4, member.getId());
+                    pstmt.setString(5, member.getBirth());
                     pstmt.executeUpdate();
                     x= 1;//회원정보 수정 처리 성공
 				}else

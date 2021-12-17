@@ -16,8 +16,7 @@
 	<button id="clothesMain">관리자 메인으로</button>
 	<button id="clothesList">목록으로</button>
 </div>
-<form id="upForm1" action="/clothes/manager/clothesRegisterPro.do"
-	method="post" enctype="multipart/form-data">
+<form id="upForm1" action="/clothes/manager/clothesRegisterPro.do" method="post" enctype="multipart/form-data">
 	<div id="clothesReigstForm" class="box">
 		<ul>
 			<li><label for="clothes_kind">분류선택</label> <select
@@ -35,12 +34,12 @@
 			<li><label for="clothes_count">수량</label> <input
 				id="clotehs_count" name="clothes_count" type="text" size="10"
 				placeholder="수량" maxlength="5">
-			<li><label for="clothes_size">사이즈</label> <select
-				id="clothes_size" name="clothes_size">
-					<option value="1">S</option>
-					<option value="2">M</option>
-					<option value="3">L</option>
-			</select>
+			<li><label for="clothes_size">사이즈</label> 
+				<select id="clothes_size" name="clothes_size">
+					<option value="S">S</option>
+					<option value="M">M</option>
+					<option value="L">L</option>
+				</select>
 			<li><label for="clothes_image">옷 이미지</label> <input
 				id="clothes_image" name="clothes_image" type="file">
 			<li><label for="clothes_content">옷 설명</label> <textarea

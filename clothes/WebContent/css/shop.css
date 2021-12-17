@@ -1,0 +1,42 @@
+
+#shop{
+    text-align:center;
+    
+    }
+
+#shop p{
+	text-align:center;
+}
+
+.vhcenter{
+	width:300px;
+	text-align:center;
+	border : 0;
+	margin:50px;
+}
+
+
+table, tr, th, td {
+    border: 0;
+    border-collapse: collapse;
+    margin:10px
+}
+
+table{
+	display:inline-block;
+	border : 0;
+	margin:0;  
+}
+
+.listimage{
+	 border: 0;
+	 width :300px; 
+	 height:300px;
+}
+
+.slide{
+	  top:50px;
+    margin-left: 345px;
+    width: 1100px;
+    height: 500px;
+}

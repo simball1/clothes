@@ -25,20 +25,19 @@
      <ul>
         <li>${sessionScope.id}님이 로그인 하셨습니다.
            <div id="info">
-             <table>
-               <tr height="10">
-                 <td><button id="uLogout">로그아웃</button></td>
-                 <td><button id="uUpdate">회원 정보 변경</button></td>
-                 <td><form id="cartForm" method="post" action="/clothes/cartList.do">
-                   <input type="hidden" name="buyer" value="${sessionScope.id}">
-                   <input type="submit" name="cart" value="장바구니"></form></td>
-                 <td><form id="buyForm" method="post" action="/clothes/buyList.do">
-                   <input type="hidden" name="buyer" value="${sessionScope.id}">
-                   <input type="submit" name="buy" value="구매내역"></form></td>
-                 </tr>
-             </table>
-        </div>     
-            
+				<table>
+               		<tr height="10">
+                 		<td><button id="uLogout">로그아웃</button></td>
+                 		<td><button id="uUpdate">회원 정보 변경</button></td>
+                 		<td><form id="cartForm" method="post" action="/clothes/cartList.do">
+                   			<input type="hidden" name="buyer" value="${sessionScope.id}">
+                   			<input type="submit" name="cart" value="장바구니"></form></td>
+                 		<td><form id="buyForm" method="post" action="/clothes/buyList.do">
+                   			<input type="hidden" name="buyer" value="${sessionScope.id}">
+                   			<input type="submit" name="buy" value="구매내역"></form></td>
+                 	</tr>
+             	</table>
+        	</div>       
      </ul>
   </div>
 </c:if> 
